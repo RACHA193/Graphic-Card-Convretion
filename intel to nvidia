@@ -1,0 +1,26 @@
+--Converting intel graphic card to nvidia in kali linux--
+
+
+
+> Open Terminal
+> sudo apt update
+> sudo apt -y full-upgrade -y
+
+//to find out what kind of graphic cards are on our system//
+//make sure we have a graphic card that's supporting nvidia cuda//
+> lspci | grep -i nvidia
+//if your card is not suporting nvidia cuda, you can skip CUDA tool kit//
+
+//to check what kind of driver currently loaded in the system//
+> lspci -s device_id(ex:01:00.0) -v
+//check the kernel driver in use (nouveau)//
+
+//install nvidia driver//
+> sudo apt install -y nvidia-driver nvidia-cuda-toolkit
+> reboot
+
+//check whether new nvidia driver is loaded in to the system//
+> lspci -s device_id(ex:01:00.0) -v
+//check kernel driver in use, it will be nvidia//
+//make sure nvidia cuda latest version is actually installed//
+> nvidia-smi
